@@ -12,8 +12,6 @@ and open the template in the editor.
   </head>
   <body>
     <h1>Photo Manager</h1>
-    <?php require 'App/bootstrap.php';?>
-    <script src="js/libs/jquery/jquery.js"></script>
-    <script src="main.js"></script>
+    <?php require 'App/bootstrap.php';?>    
   </body>
 </html>
