@@ -14,8 +14,8 @@ A basic controller
 Model's that manage their own persistence
 Configurable runtime environments
 
-## Instructions
-Create a db and then run the patch in the App/Migrations folder in it. 
+## Instructions:
+Create a db and then run the patch in the App/Migrations folder in it. Then navigate to the homepage.
 
 
 
