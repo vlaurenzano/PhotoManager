@@ -98,6 +98,11 @@ class Server {
     header("Location: $url");
   }
   
+  public function getFile($name){
+    return isset($_FILES[$name]) ? $_FILES[$name] : FALSE;
+  }
+  
+  
   
   
 }

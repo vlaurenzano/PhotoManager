@@ -8,3 +8,10 @@ CREATE TABLE `users` (
 
 ALTER TABLE `users` 
 CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+
+CREATE TABLE `photos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` LONGTEXT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`));

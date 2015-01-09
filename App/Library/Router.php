@@ -47,6 +47,14 @@ class Router {
       'logout' => array(               
         'method' => 'logout',      
          'public' => false         
+      ),      
+      'upload' => array(               
+        'method' => 'upload',      
+         'public' => false         
+      ),      
+      'delete' => array(               
+        'method' => 'delete',      
+         'public' => false         
       )      
   );
   

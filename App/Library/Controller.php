@@ -2,6 +2,7 @@
 namespace App\Library;
 
 use \App\Models\User;
+use \App\Models\Photo;
 /**
  * This would be abstract and extended by the diff controllers
  * since this is a simple app, everythig will happen here
@@ -59,7 +60,9 @@ class Controller {
        $this->server->redirect('index.php?route=dashboard');
      }
    }
-   echo "<div style='background-color:yellow'>The login values were incorrect, try again</div>";
+   if( $this->server->getAllPost()){
+    echo "<div style='background-color:yellow'>The login values were incorrect, try again</div>";
+   }
    return require __dir__ . '/../Views/login.html'; 
   }
   
@@ -100,7 +103,32 @@ class Controller {
    */
   public function dashboard(){
     $user = unserialize($this->server->getFromSession('user'));
+    $photos = Photo::getPhotosForUser($user, $this->registry->db);
     return require __dir__ . '/../Views/dashboard.php'; 
+  }
+  
+  /**
+   * We're not going to verify image or anything here
+   * Obviously just demo
+   * @return type
+   */
+  public function upload(){
+    $photo = $this->server->getFile('photo');
+    if(!$photo['tmp_name']){ 
+      return $this->server->redirect('index.php?route=dashboard');   
+    }
+    $p = new Photo();
+    $p->createNewPhotoFromUpload($photo,$user = unserialize($this->server->getFromSession('user')), $this->registry->db);    
+    return $this->server->redirect('index.php?route=dashboard');   
+  }
+  
+  public function delete(){
+    $photo = $this->server->getFromPost('photo');
+    if( !$photo ){
+      return $this->server->redirect('index.php?route=dashboard');   
+    }
+    Photo::delete($photo, unserialize($this->server->getFromSession('user')), $this->registry->db);
+    return $this->server->redirect('index.php?route=dashboard');   
   }
   
   /**
